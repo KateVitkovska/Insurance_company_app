@@ -2,11 +2,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class MainImpl extends InsuranceInput {
-
-
-    //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main_InsuranceAPP extends InsuranceInput {
+    //Main_InsuranceAPP class inherits methods and parameters from InsuranceInput class, to make calculations accordingly
 
 
         public static void main(String[] args) {
@@ -14,16 +11,17 @@ public class MainImpl extends InsuranceInput {
             Scanner scanner = new Scanner(System.in);
 
             while (true) {
-
-                System.out.println("What you want to do:");
-                System.out.println("1. Register:");
+            //Defining options to choose from
+                System.out.println("Hello! What do you want to do:");
+                System.out.println("1. Register");
                 System.out.println("2. Get client details");
                 System.out.println("3. Apply for insurance and calculate premium");
                 System.out.println("4. Exit");
                 System.out.println("Enter an option");
-                int action = scanner.nextInt();
+                int action = scanner.nextInt(); //Input
                 scanner.nextLine();
 
+                //Accordingly to chosen action(option) user gets the output
                 switch (action) {
                     case 1: //register new client
                         if (client == null) {
@@ -53,9 +51,10 @@ public class MainImpl extends InsuranceInput {
                             System.out.println("Register first");
                         }
                         break;
-                    case 3: //Apply for insurance and calculate premium
+                    case 3: /*Apply for insurance and calculate premium -- using methods defined in InsuranceInput
+                              class */
                         if (client != null) {
-
+                            //Defining an array with available insurance type options
                             List<String> insuranceTypes = Arrays.asList("health", "property", "car");
 
                             System.out.println("Choose the type of insurance: ");
@@ -72,8 +71,22 @@ public class MainImpl extends InsuranceInput {
                                 }
                             } else {
                                 System.out.println("Invalid insurance type. Please choose from the available options.");
+                                //Displays if invalid insurance type is chosen
                                 chosenInsurance = scanner.nextLine();
                                 System.out.println("You have chosen " + chosenInsurance + " insurance.");
+
+                                if (insuranceTypes.contains(chosenInsurance)) {
+
+                                    if (chosenInsurance.equals("car")) {
+                                        handleCarInsurance(scanner);
+                                    }
+                                    if (chosenInsurance.equals("health")) {
+                                        handleHealthInsurance(scanner);
+                                    }
+                                    if (chosenInsurance.equals("property")) {
+                                        handlePropertyInsurance(scanner);
+                                    }
+                                }
                             }
                         }
 
@@ -84,7 +97,7 @@ public class MainImpl extends InsuranceInput {
                         System.exit(0);
                         break;
                     default:
-                        System.out.println("Invalid option. Please, try again");
+                        System.out.println("Invalid option. Please, try again"); //Displays if user inputs invalid option
                 }
                 System.out.println("=======================================");
             }

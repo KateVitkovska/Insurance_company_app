@@ -7,6 +7,8 @@ import static java.lang.System.out;
 
 public class ClientInput{
     private String fullName;
+
+    //Getter method for name
     public String getFullName() {
         return this.fullName;
     }
